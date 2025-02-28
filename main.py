@@ -66,12 +66,13 @@ def main():
             for asteroid in asteroids:
                 if asteroid.collision(player):
                     print("Game over!")
-                    game_active = False
+                    # game_active = False
 
                 for shot in shots:
                     if asteroid.collision(shot):
                         asteroid.split()
                         shot.kill()
+                        text.add_score(1000)
 
             screen.fill("black")
 

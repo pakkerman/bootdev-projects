@@ -12,8 +12,8 @@ class Text(pygame.sprite.Sprite):
         self.start_time = 0
         self.score = 0
 
-    def draw(self, screen ):
-        self.text = self.font.render(f"score: {self.score}", False, "white") 
+    def draw(self, screen):
+        self.text = self.font.render(f"score: {self.score // 100}", False, "white") 
         text_rect = self.text.get_rect(center = (SCREEN_WIDTH - 80, SCREEN_HEIGHT - 40))
         screen.blit(self.text, text_rect)
 
@@ -21,4 +21,18 @@ class Text(pygame.sprite.Sprite):
         self.score = pygame.time.get_ticks() - self.start_time
 
 
+    def add_score(self, delta):
+        self.score += delta
 
+
+
+class Score(Text):
+    
+
+    def draw(self, screen):
+            self.text = self.font.render(f"score: {self.score // 100}", False, "white") 
+            text_rect = self.text.get_rect(center = (SCREEN_WIDTH - 80, SCREEN_HEIGHT - 40))
+            screen.blit(self.text, text_rect)
+
+    def update(self, dt):
+        self.score = pygame.time.get_ticks() - self.start_time
