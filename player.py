@@ -82,8 +82,12 @@ class Player(CircleShape):
         if 0 < self.shoot_cooldown:
             return
 
-        shot = Shot(self.position.x, self.position.y) 
-        shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED  
+        shot0 = Shot(self.position.x, self.position.y) 
+        shot1 = Shot(self.position.x, self.position.y) 
+        shot2 = Shot(self.position.x, self.position.y) 
+        shot0.velocity = pygame.Vector2(0, 1.03).rotate(self.rotation) * PLAYER_SHOOT_SPEED  
+        shot1.velocity = pygame.Vector2(0, 1).rotate(self.rotation + 2) * PLAYER_SHOOT_SPEED  
+        shot2.velocity = pygame.Vector2(0, 1).rotate(self.rotation - 2) * PLAYER_SHOOT_SPEED  
         self.inertia -= pygame.Vector2(0, 0.3).rotate(self.rotation) # firing recoil
 
         self.shoot_cooldown = PLAYER_SHOOT_COOLDOWN
