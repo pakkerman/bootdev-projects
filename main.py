@@ -63,10 +63,14 @@ def main():
         if game_active:
             updatable.update(dt)
 
+            
             for asteroid in asteroids:
                 if asteroid.collision(player):
-                    print("Game over!")
-                    # game_active = False
+                    player.take_damage(1)
+                    player.collide(asteroid)
+                    if not player.is_alive():
+                        print("Game over!")
+                        game_active = False
 
                 for shot in shots:
                     if asteroid.collision(shot):
